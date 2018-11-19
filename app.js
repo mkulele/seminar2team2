@@ -24,7 +24,7 @@ app.get('/download/:fileid', function(req, res){
     if( fileId == '1'  ){
         origFileNm = 'Battle.net-Setup.zip';
         savedFileNm = 'Battle.net-Setup.zip';
-        savedPath = '/Users/mr/Desktop/seminartest/download';
+        savedPath = __dirname+'/download';
         fileSize = '6209';
     }/*else if( fileId == '1.1'  ){
         origFileNm = '2src_files.zip';
@@ -48,6 +48,6 @@ app.get('/download/:fileid', function(req, res){
 
 
 
-app.listen(PORT,function(){
+app.listen(3000,function(){
     console.log("server start");
 });
