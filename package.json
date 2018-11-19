@@ -1,0 +1,13 @@
+{
+  "name": "seminar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "make test",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^6.4.1"
+  }
+}
