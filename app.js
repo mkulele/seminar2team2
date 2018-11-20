@@ -3,19 +3,27 @@ var util = require('util');
 var fs = require('fs');
 var path = require('path');
 var mime = require('mime');
+var multer=require('multer');
 const PORT = process.env.PORT;
+//const PORT = 3000;
 var app = express();
 
+
+//views설정
 app.use(express.static('views'));
 app.get('/', function(req, res){
-    fs.readFile('./index.html', function(error, data){
-        res.writeHead(200, {'Content-Type':'text/html'});
+    fs.readFile('./index.html','utf8', function(error, data){
+
+        res.end(data);
+    });
+});
+app.get('/admin', function(req, res){
+    fs.readFile('./views/admin.html','utf8', function(error, data){
         res.end(data);
     });
 });
 
-
-
+//파일다운로드
 app.get('/download/:fileid', function(req, res){
     var fileId = req.params.fileid; //fileid = 각각의 파일을 구분하는 파일ID 값
     var origFileNm, savedFileNm, savedPath, fileSize; //DB에서 읽어올 정보들
@@ -24,7 +32,7 @@ app.get('/download/:fileid', function(req, res){
     if( fileId == '1'  ){
         origFileNm = 'Battle.net-Setup.zip';
         savedFileNm = 'Battle.net-Setup.zip';
-        savedPath = __dirname+'/download';
+        savedPath = __dirname+'/upload';
         fileSize = '6209';
     }/*else if( fileId == '1.1'  ){
         origFileNm = '2src_files.zip';
@@ -46,6 +54,27 @@ app.get('/download/:fileid', function(req, res){
     filestream.pipe(res);
 });
 
+
+
+//파일업로드
+var Storage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, "./upload");
+    },
+    filename:function (req,file,callback) {
+        callback(null,file.originalname);}
+});
+var upload = multer({
+    storage: Storage
+}).array("fu", 1); //Field name and max count
+app.post("/admin/upload", function(req, res) {
+    upload(req, res, function(err) {
+        if (err) {
+            return res.end("Something went wrong!");
+        }
+        return res.end("File uploaded sucessfully!.");
+    });
+});
 
 
 app.listen(PORT,function(){
