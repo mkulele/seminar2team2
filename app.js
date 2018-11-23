@@ -4,8 +4,8 @@ var fs = require('fs');
 var path = require('path');
 var mime = require('mime');
 var multer=require('multer');
-const PORT = process.env.PORT;
-//const PORT = 3000;
+//const PORT = process.env.PORT;
+const PORT = 3100;
 var app = express();
 
 
