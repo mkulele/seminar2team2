@@ -30,17 +30,17 @@ app.get('/download/:fileid', function(req, res){
 
     // 원본파일명, 저장파일명, 파일저장경로, 파일사이즈
     if( fileId == '1'  ){
-        origFileNm = 'Battle.net-Setup.zip';
-        savedFileNm = 'Battle.net-Setup.zip';
+        origFileNm = 'spyout_1.0.zip';
+        savedFileNm = 'spyout_1.0.zip';
         savedPath = __dirname+'/upload';
-        fileSize = '6209';
-    }/*else if( fileId == '1.1'  ){
-        origFileNm = '2src_files.zip';
-        savedFileNm = '2wsx3edc-201604061231';
-        savedPath = 'ledownload/files'
-        fileSize = '160931';
 
-    }*/
+    }else if( fileId == '1.1'  ){
+        origFileNm = 'spyout_1.1.zip';
+        savedFileNm = 'spyout_1.1.zip';
+        savedPath = __dirname+'/upload';
+
+
+    }
 
     var file = savedPath + '/' + savedFileNm;
    console.log('file : ', file);
