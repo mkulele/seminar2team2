@@ -38,8 +38,6 @@ app.get('/download/:fileid', function(req, res){
         origFileNm = 'spyout_1.1.zip';
         savedFileNm = 'spyout_1.1.zip';
         savedPath = __dirname+'/upload';
-
-
     }
 
     var file = savedPath + '/' + savedFileNm;
